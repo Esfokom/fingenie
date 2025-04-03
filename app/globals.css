@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 12 76% 51%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 12 76% 51%;
+    --radius: 0.5rem;
+
+    /* Bankora-AI specific colors */
+    --bankora-primary: 220 76% 51%;
+    --bankora-ring: 220 76% 51%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 12 76% 51%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 12 76% 51%;
+
+    /* Bankora-AI specific colors */
+    --bankora-primary: 220 76% 51%;
+    --bankora-ring: 220 76% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.fingenie-gradient {
+  background: linear-gradient(to right, #ff5722, #ff9800);
+}
+
+.bankora-gradient {
+  background: linear-gradient(to right, #1e40af, #3b82f6);
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
+  }
+}
+
+.bankora-animate-glow {
+  animation: bankora-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes bankora-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(30, 64, 175, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(30, 64, 175, 0.8);
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, #ff5722, #ff9800);
+}
+
+.bankora-gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, #1e40af, #3b82f6);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.15), transparent 70%);
+}
+
+/* Update the chat bubble styles to ensure proper alignment */
+.chat-bubble-user {
+  @apply bg-primary text-primary-foreground;
+  border-bottom-right-radius: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  margin-left: auto; /* Ensure alignment to the right */
+}
+
+.chat-bubble-user::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at top right, transparent 16px, hsl(var(--primary)) 0);
+}
+
+.chat-bubble-ai {
+  @apply bg-muted text-foreground;
+  border-bottom-left-radius: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chat-bubble-ai::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at top left, transparent 16px, hsl(var(--muted)) 0);
+}
+
+.bankora-chat-bubble-user {
+  background-color: hsl(var(--bankora-primary));
+  color: hsl(var(--primary-foreground));
+  border-bottom-right-radius: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  margin-left: auto; /* Ensure alignment to the right */
+}
+
+.bankora-chat-bubble-user::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at top right, transparent 16px, hsl(var(--bankora-primary)) 0);
+}
+
+/* Animation for new messages */
+@keyframes pulse-once {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-once {
+  animation: pulse-once 0.5s ease-in-out;
+}
+
+/* Background grid pattern */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.markdown-content h1 {
+  @apply text-2xl font-bold mt-4 mb-2;
+}
+
+.markdown-content h2 {
+  @apply text-xl font-bold mt-3 mb-2;
+}
+
+.markdown-content h3 {
+  @apply text-lg font-bold mt-3 mb-1;
+}
+
+.markdown-content p {
+  @apply mb-4;
+}
+
+.markdown-content ul {
+  @apply list-disc pl-5 mb-4;
+}
+
+.markdown-content ol {
+  @apply list-decimal pl-5 mb-4;
+}
+
+.markdown-content a {
+  @apply text-primary underline;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-primary pl-4 italic my-4;
+}
+
+.markdown-content code {
+  @apply bg-muted px-1 py-0.5 rounded text-sm;
+}
+
+.markdown-content pre {
+  @apply bg-muted p-4 rounded-md overflow-x-auto my-4;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent p-0;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse my-4;
+}
+
+.markdown-content th,
+.markdown-content td {
+  @apply border border-border p-2;
+}
+
+.markdown-content th {
+  @apply bg-muted;
+}
+
+.bankora-markdown-content a {
+  color: hsl(var(--bankora-primary));
+}
+
+.bankora-markdown-content blockquote {
+  border-color: hsl(var(--bankora-primary));
+}
+
+/* Enhanced background gradients for chat interface */
+.chat-interface-gradient {
+  background: radial-gradient(circle at top left, rgba(255, 87, 34, 0.1), transparent 70%),
+    radial-gradient(circle at bottom right, rgba(255, 152, 0, 0.1), transparent 70%),
+    linear-gradient(to bottom right, rgba(255, 87, 34, 0.05), rgba(255, 152, 0, 0.05));
+}
+
+.bankora-chat-interface-gradient {
+  background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.1), transparent 70%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.1), transparent 70%),
+    linear-gradient(to bottom right, rgba(30, 64, 175, 0.05), rgba(59, 130, 246, 0.05));
+}
+
